@@ -22,11 +22,11 @@ function App() {
     try {
       const todoListResource = await provider.getAccountResource({
         accountAddress: account?.address,
-        resourceType: `${moduleAddress}::dice::DiceRollHistory`
+        resourceType: `${moduleAddress}::dice2::DiceRollHistory`
       }
       );
-      console.log(todoListResource);
-      let data = JSON.parse((todoListResource?.rolls[todoListResource?.rolls.length - 1] as any));
+      // console.log(todoListResource.rolls[todoListResource.length - 1]);
+      let data = ((todoListResource?.rolls[todoListResource?.rolls.length - 1] as any));
       setCounter(data);
       // if(reload){
       //   window.location.reload();
@@ -46,7 +46,7 @@ function App() {
     // build a transaction payload to be submited
     const payload = {
       type: "entry_function_payload",
-      function: `${moduleAddress}::dice::roll`,
+      function: `${moduleAddress}::dice2::roll`,
       type_arguments: [],
       arguments: [],
     };
@@ -127,7 +127,9 @@ function App() {
         </Row>
         <Row>
           <Col>
-            <p style={{ fontSize: "80px", textAlign: "center" }}>Dice: {counter}</p>
+            {(counter.length) ?
+              <p style={{ fontSize: "80px", textAlign: "center" }}>Dice: {counter[0] + " " + counter[1] + " " + counter[2] + " " + counter[3]}</p>
+              : <></>}
           </Col>
         </Row>
         {/* </Spin > */}
