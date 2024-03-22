@@ -1,4 +1,4 @@
-module module_owner::dice2 {
+module dice::dice {
     use std::signer::address_of;
     use std::vector;
     use aptos_framework::randomness;
